@@ -561,7 +561,8 @@ a.liquid-glass, a.liquid-glass:visited, a.liquid-glass:hover { color: #fff !impo
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.4);
+  /* WCAG AA: small-text contrast 4.5:1. rgba(255,255,255,0.6) on #080808 ≈ 5.8:1 */
+  color: rgba(255,255,255,0.6);
 }
 
 /* ============================================================
