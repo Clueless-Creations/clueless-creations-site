@@ -1,0 +1,48 @@
+---
+import SeoMeta from '../components/SeoMeta.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/tokens.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  page: 'home' | 'about' | 'about-me' | 'contact' | '404';
+  canonical?: string;
+}
+const { title, description, page, canonical } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080808" />
+    <SeoMeta title={title} description={description} canonical={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body data-page={page}>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header page={page} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    padding: 0.75rem 1rem;
+    background: hsl(var(--background-elev));
+    color: hsl(var(--foreground));
+    text-decoration: none;
+    z-index: 100;
+  }
+  .skip-link:focus-visible {
+    top: 0;
+  }
+</style>
