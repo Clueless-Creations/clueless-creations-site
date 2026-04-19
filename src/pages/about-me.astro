@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialRow from '../components/SocialRow.astro';
+---
+<BaseLayout
+  page="about-me"
+  title="About me — Eduardo Muth-Martinez"
+  description="Founder note from the human on the board of Clueless Creations."
+>
+  <section style="padding: 8rem 1.5rem 4rem; background: hsl(var(--background));">
+    <div class="container-wide" style="max-width: 42rem;">
+      <div class="eyebrow" style="margin-bottom: var(--space-4);">Founder note</div>
+      <h1 class="display-xl font-display" style="margin: 0 0 var(--space-12); line-height: 0.95;">
+        The human
+        <em class="accent-muted">on the board.</em>
+      </h1>
+
+      <!-- Headshot placeholder — replace with real image at /img/eduardo.avif when supplied -->
+      <div class="ph-image" data-label="headshot" style="width: 100%; aspect-ratio: 3/4; max-width: 18rem; border-radius: var(--radius-lg); margin: 0 0 var(--space-12);"></div>
+
+      <!-- TODO(eduardo): Replace the paragraph below with a 5–10 line bio.
+           Context: This is the only page on the site written in your voice
+           rather than the company's. Readers landing here have already bought
+           into the premise — they want to know who's on the board. What
+           matters: (1) what you're optimizing for, (2) what makes this
+           portfolio different from a typical solopreneur shop, (3) how to
+           reach you. Skip the resume bullets — Substack and LinkedIn carry
+           those. ~80–150 words. -->
+      <div class="bio prose" style="font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.75; color: hsl(var(--foreground) / 0.88);">
+        <p>
+          [TODO: replace with your bio. See the comment in the source for
+          guidance on tone and scope. Until this is filled in, this block
+          is visible in the live site as a deliberate placeholder so it's
+          never accidentally missed.]
+        </p>
+      </div>
+
+      <div style="margin-top: var(--space-12); padding-top: var(--space-8); border-top: 1px solid rgba(255,255,255,0.08);">
+        <div class="eyebrow" style="margin-bottom: var(--space-4);">Reach me</div>
+        <SocialRow />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
