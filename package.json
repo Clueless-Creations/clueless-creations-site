@@ -13,7 +13,9 @@
     "generate-hero": "node scripts/generate-hero.mjs",
     "test:smoke": "playwright test tests/smoke.spec.ts",
     "test:a11y": "playwright test tests/a11y.spec.ts",
-    "test:lh": "lhci autorun"
+    "test:lh": "lhci autorun",
+    "test:links": "linkinator dist --recurse --silent --clean-urls --skip \"^https?://clueless-creations\\.com/\"",
+    "test:meta": "node scripts/check-meta.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
@@ -28,6 +30,7 @@
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.59.1",
     "axe-core": "^4.11.3",
+    "linkinator": "^7.6.1",
     "sharp": "^0.34.5",
     "typescript": "^5.9.3"
   }
