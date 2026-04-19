@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-hero": "node scripts/generate-hero.mjs"
+    "generate-hero": "node scripts/generate-hero.mjs",
+    "test:smoke": "playwright test tests/smoke.spec.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
@@ -21,6 +22,7 @@
     "@fontsource/instrument-serif": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
+    "@playwright/test": "^1.59.1",
     "sharp": "^0.34.5",
     "typescript": "^5.9.3"
   }
