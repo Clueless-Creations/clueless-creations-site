@@ -1,0 +1,541 @@
+/* ============================================================
+   Clueless Creations — Design Tokens
+   Single source of truth. Import this file on every page.
+   ============================================================ */
+
+:root {
+  /* ---- Color (HSL triplets, used with hsl(var(--x))) ---- */
+  --background: 0 0% 3%;                 /* Near-black — matches video backdrop */
+  --background-elev: 0 0% 5%;            /* Elevated — slightly lifted */
+  --foreground: 0 0% 100%;               /* Pure white */
+  --muted-foreground: 240 5% 72%;        /* Muted gray for subcopy — bumped for 4.5:1 contrast on --background 0 0% 3% */
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 4%;
+  --secondary: 0 0% 10%;
+  --muted: 0 0% 10%;
+  --accent: 0 0% 10%;
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+
+  /* ---- Per-business accents (revealed in Portfolio) ---- */
+  --accent-clothing: 14 90% 64%;         /* Clueless Clothing — warm coral */
+  --accent-batchlist: 200 80% 60%;       /* BatchList — sky */
+  --accent-tripcraft: 160 60% 55%;       /* TripCraft — teal */
+  --accent-thelm: 270 60% 68%;           /* Thelm — violet */
+  --accent-research: 42 90% 62%;         /* Research engine — amber */
+  --accent-newsletter: 340 70% 65%;      /* The Compounding Founder — rose */
+
+  /* ---- Typography ---- */
+  --font-display: "Instrument Serif", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale — display (serif) */
+  --text-display-xl: clamp(3.5rem, 8vw, 8rem);     /* Hero h1 */
+  --text-display-lg: clamp(2.75rem, 5.5vw, 5rem);  /* Section headers */
+  --text-display-md: clamp(2rem, 3.5vw, 3.25rem);  /* Sub headers */
+  --text-display-sm: clamp(1.5rem, 2.4vw, 2rem);   /* Card titles */
+
+  /* Type scale — body */
+  --text-xs:  0.75rem;
+  --text-sm:  0.875rem;
+  --text-base: 1rem;
+  --text-lg:  1.125rem;
+  --text-xl:  1.25rem;
+
+  /* ---- Spacing rhythm ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* ---- Radii ---- */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ---- Layout ---- */
+  --container: 80rem; /* 1280px */
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; min-height: 100%; }
+
+body {
+  font-family: var(--font-body);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+}
+
+/* ============================================================
+   Liquid glass — core surface treatment
+   Used on nav, buttons, cards, panels.
+   ============================================================ */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.06);
+  background-blend-mode: luminosity;
+  color: #fff;
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border: none;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.15) 80%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+a.liquid-glass, a.liquid-glass:visited, a.liquid-glass:hover { color: #fff !important; text-decoration: none; }
+.liquid-glass.interactive { cursor: pointer; }
+.liquid-glass.interactive:hover { transform: scale(1.03); background: rgba(255, 255, 255, 0.1); }
+
+/* Pill CTA \u2014 strongest glass look, for nav CTAs and inline buttons */
+.liquid-glass.rounded-full {
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* Deeper glass for cards/panels — slightly more opaque for readability */
+.liquid-glass-deep {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ============================================================
+   Portfolio card metrics bar \u2014 shown at bottom of biz-cards
+   ============================================================ */
+.card-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: .75rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.card-metrics .metric-cell {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+}
+.card-metrics .metric-val {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1;
+  color: #fff;
+  display: flex;
+  align-items: baseline;
+  gap: .35rem;
+}
+.card-metrics .metric-val .trend-up {
+  font-family: var(--font-body);
+  font-size: .7rem;
+  font-weight: 500;
+  color: #9ae6b4;
+  letter-spacing: 0;
+}
+.card-metrics .metric-val .trend-down {
+  font-family: var(--font-body);
+  font-size: .7rem;
+  font-weight: 500;
+  color: #fca5a5;
+  letter-spacing: 0;
+}
+.card-metrics .metric-cap {
+  font-family: var(--font-mono);
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-family: var(--font-mono);
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  margin-top: .75rem;
+  padding-top: .75rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.verified-badge .verified-dot {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: #9ae6b4;
+  box-shadow: 0 0 8px rgba(154,230,180,.6);
+}
+   Default for any "stat" / "feature" / "metric" block across the site.
+   ============================================================ */
+.stat-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.stat-row::-webkit-scrollbar { display: none; }
+.stat-row.stat-row-wrap { flex-wrap: wrap; }
+
+.stat-card {
+  /* inherits .liquid-glass look via composition */
+  flex: 1 1 0;
+  min-width: 12rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 1rem;
+  text-align: left;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.stat-card .stat-icon {
+  font-size: 1.75rem;
+  opacity: .85;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.stat-card .stat-value {
+  display: flex;
+  align-items: baseline;
+  gap: .4rem;
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  line-height: 1;
+}
+.stat-card .stat-value small {
+  font-family: var(--font-body);
+  font-size: .95rem;
+  opacity: .8;
+  font-weight: 400;
+}
+.stat-card .stat-label {
+  color: hsl(var(--muted-foreground));
+  font-size: .8rem;
+  margin-top: .25rem;
+}
+.stat-card .stat-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  margin-top: .25rem;
+}
+.stat-card .stat-desc {
+  color: hsl(var(--muted-foreground));
+  font-size: .9rem;
+  line-height: 1.6;
+  margin-top: .25rem;
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-rise         { animation: fade-rise 0.8s ease-out both; }
+.animate-fade-rise-delay   { animation: fade-rise 0.8s ease-out 0.2s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
+.animate-fade-rise-delay-3 { animation: fade-rise 0.8s ease-out 0.6s both; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* ============================================================
+   Typographic primitives
+   ============================================================ */
+.font-display { font-family: var(--font-display); font-weight: 400; }
+.font-body    { font-family: var(--font-body); }
+.font-mono    { font-family: var(--font-mono); }
+
+.display-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-display-xl);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+.display-lg {
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+.display-md {
+  font-family: var(--font-display);
+  font-size: var(--text-display-md);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+.display-sm {
+  font-family: var(--font-display);
+  font-size: var(--text-display-sm);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+.muted { color: hsl(var(--muted-foreground)); }
+
+/* Accent inline — matches Velorah-style emphasis */
+.accent-muted { color: hsl(var(--muted-foreground)); font-style: normal; }
+
+/* ============================================================
+   Layout helpers
+   ============================================================ */
+.container-wide {
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+/* Background video fills page behind content */
+.video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
+  z-index: 0;
+}
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0) 28%,
+    rgba(0, 0, 0, 0) 62%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+/* ============================================================
+   Navigation primitives
+   ============================================================ */
+/* ============================================================
+   Nav bar \u2014 responsive layout
+   ============================================================ */
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.site-nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.site-nav-links {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0;
+}
+.site-nav-cta {
+  flex: 0 0 auto;
+}
+@media (min-width: 960px) {
+  .site-nav-links { display: flex; }
+}
+@media (max-width: 959px) {
+  .site-nav { justify-content: space-between; }
+}
+
+/* Nav primitives */
+.nav-link {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.nav-link:hover, .nav-link.active {
+  color: hsl(var(--foreground));
+}
+
+/* ============================================================
+   Image placeholder — honest striped fill
+   ============================================================ */
+.ph-image {
+  position: relative;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04) 0 12px,
+      rgba(255, 255, 255, 0.02) 12px 24px
+    ),
+    hsl(var(--background-elev));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ph-image::after {
+  content: attr(data-label);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ============================================================
+   Status dots (for portfolio / business statuses)
+   ============================================================ */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.status-live       { background: hsl(140 70% 55%); box-shadow: 0 0 12px hsl(140 70% 55% / 0.7); }
+.status-building   { background: hsl(42 90% 62%);  box-shadow: 0 0 12px hsl(42 90% 62% / 0.6); }
+.status-validating { background: hsl(200 80% 60%); box-shadow: 0 0 12px hsl(200 80% 60% / 0.6); }
+.status-retired    { background: hsl(0 0% 40%); }
+
+/* ============================================================
+   Prose — for Journal posts
+   ============================================================ */
+.prose {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: hsl(var(--foreground) / 0.88);
+  max-width: 68ch;
+}
+.prose p { margin: 0 0 1.25em; }
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 2em 0 0.6em;
+  font-weight: 400;
+}
+.prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 1.75em 0 0.5em;
+  font-weight: 400;
+}
+.prose a { color: hsl(var(--foreground)); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,0.3); }
+.prose a:hover { text-decoration-color: rgba(255,255,255,1); }
+.prose blockquote {
+  border-left: 2px solid rgba(255,255,255,0.3);
+  padding-left: 1.25em;
+  margin: 1.5em 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: hsl(var(--foreground));
+}
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: rgba(255,255,255,0.06);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.prose ul, .prose ol { padding-left: 1.25em; margin: 0 0 1.25em; }
+.prose li { margin: 0.35em 0; }
+
+/* ============================================================
+   Footer operator stamp (self-aware detail)
+   ============================================================ */
+.operator-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ============================================================
+   Utility
+   ============================================================ */
+.divider-hairline {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================================
+   Master reduced-motion kill-switch
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero video { display: none; }
+  .hero picture { display: block; }
+}
