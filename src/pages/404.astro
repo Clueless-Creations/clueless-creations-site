@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  page="404"
+  title="Not found — Clueless Creations"
+  description="The page you were looking for isn't here. Head home."
+>
+  <section style="padding: 10rem 1.5rem; background: hsl(var(--background)); min-height: calc(100vh - 200px); display: flex; align-items: center;">
+    <div class="container-wide" style="text-align: center; max-width: 36rem; margin: 0 auto;">
+      <div class="eyebrow" style="margin-bottom: var(--space-6);">404</div>
+      <h1 class="display-lg font-display" style="margin: 0 0 var(--space-8);">
+        That one <em class="accent-muted">got away.</em>
+      </h1>
+      <p class="muted" style="font-size:1.125rem; line-height:1.7; margin: 0 0 var(--space-12);">
+        The page you wanted isn't here. Head back to the portfolio or reach out.
+      </p>
+      <a href="/" class="liquid-glass interactive rounded-full" style="display:inline-block; padding: 1rem 2.5rem; font-size: 1rem; text-decoration:none;">
+        Home →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
