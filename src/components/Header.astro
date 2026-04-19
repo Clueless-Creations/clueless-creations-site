@@ -1,0 +1,37 @@
+---
+export interface Props {
+  page: string;
+}
+const { page } = Astro.props;
+const links: Array<{ href: string; key: string; label: string }> = [
+  { href: '/', key: 'home', label: 'Home' },
+  { href: '/about', key: 'about', label: 'How it works' },
+  { href: '/about-me', key: 'about-me', label: 'About me' },
+  { href: '/contact', key: 'contact', label: 'Reach us' },
+];
+---
+<header class="site-header">
+  <nav class="container-wide site-nav">
+    <a href="/" class="site-nav-logo">
+      Clueless Creations<sup style="font-size:.5em; vertical-align:super;">®</sup>
+    </a>
+    <ul class="site-nav-links">
+      {links.map(link => (
+        <li>
+          <a href={link.href} class={`nav-link${page === link.key ? ' active' : ''}`}>{link.label}</a>
+        </li>
+      ))}
+    </ul>
+    <a href="https://www.thecompoundingfounder.com/" target="_blank" rel="noopener"
+       class="liquid-glass interactive rounded-full site-nav-cta"
+       style="padding:.625rem 1.25rem; font-size:.875rem; text-decoration:none; white-space:nowrap;">
+      Read the journal
+    </a>
+  </nav>
+</header>
+
+<style>
+  .site-header { position: relative; z-index: 20; }
+  .site-nav-links { list-style: none; padding: 0; margin: 0; display: none; gap: 2rem; flex: 1 1 auto; justify-content: center; }
+  @media (min-width: 960px) { .site-nav-links { display: flex; } }
+</style>

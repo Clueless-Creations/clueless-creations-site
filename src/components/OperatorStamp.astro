@@ -1,0 +1,12 @@
+---
+// Renders honest build metadata — falls back to 'dev' when env vars absent (local dev).
+const stamp = {
+  build: import.meta.env.BUILD_ID ?? 'dev',
+  sha: (import.meta.env.COMMIT_SHA ?? 'local').slice(0, 7),
+  builtAt: new Date(import.meta.env.BUILT_AT ?? Date.now()).toISOString().slice(0, 16) + 'Z',
+  builtBy: import.meta.env.BUILT_BY ?? 'local',
+};
+---
+<div class="operator-stamp">
+  HARNESS BUILD #{stamp.build} · {stamp.sha} · BUILT {stamp.builtAt} · BY {stamp.builtBy}
+</div>

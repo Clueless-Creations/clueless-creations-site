@@ -1,0 +1,41 @@
+---
+import OperatorStamp from './OperatorStamp.astro';
+import SocialRow from './SocialRow.astro';
+---
+<footer class="site-footer" style="padding: 4rem 1.5rem 3rem; border-top: 1px solid rgba(255,255,255,0.06);">
+  <div class="container-wide" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; align-items: start;">
+    <div>
+      <a href="/" class="font-display" style="font-size:1.5rem; letter-spacing:-0.02em; text-decoration:none; color:inherit;">
+        Clueless Creations<sup style="font-size:.5em; vertical-align:super;">®</sup>
+      </a>
+      <p class="muted" style="font-size:.85rem; line-height:1.6; margin-top: 1rem; max-width: 24rem;">
+        A business that runs businesses. Humans on the board; the harness on the floor.
+      </p>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-bottom: 1rem;">Explore</div>
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:.5rem;">
+        <li><a href="/about" class="nav-link">How it works</a></li>
+        <li><a href="/about-me" class="nav-link">About me</a></li>
+        <li><a href="/contact" class="nav-link">Reach us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-bottom: 1rem;">Build</div>
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:.5rem;">
+        <li><a href="https://github.com/Clueless-Creations" target="_blank" rel="noopener" class="nav-link">GitHub <span style="opacity:.5;">↗</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-bottom: 1rem;">Follow</div>
+      <SocialRow />
+    </div>
+  </div>
+
+  <hr class="divider-hairline" style="margin: 3rem 0 1.5rem;" />
+
+  <div style="display: flex; flex-direction: column; gap: 1rem;">
+    <OperatorStamp />
+    <div class="operator-stamp">THIS SITE WAS ASSEMBLED BY THE OPERATOR, NOT A HUMAN.</div>
+  </div>
+</footer>

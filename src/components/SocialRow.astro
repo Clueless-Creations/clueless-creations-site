@@ -1,0 +1,38 @@
+---
+const links = [
+  { href: 'https://x.com/EduMuthMartinez', label: 'X / Twitter', icon: 'x' },
+  { href: 'https://github.com/Clueless-Creations', label: 'GitHub (Clueless Creations org)', icon: 'github' },
+  { href: 'https://www.linkedin.com/in/eduardomuthmartinez/', label: 'LinkedIn', icon: 'linkedin' },
+  { href: 'https://www.thecompoundingfounder.com/', label: 'The Compounding Founder', icon: 'substack' },
+];
+---
+<ul class="social-row">
+  {links.map(link => (
+    <li>
+      <a href={link.href} aria-label={link.label} target="_blank" rel="noopener" class="liquid-glass interactive rounded-full social-pill">
+        <svg width="18" height="18" aria-hidden="true" focusable="false">
+          <use href={`/icons/social.svg#${link.icon}`} />
+        </svg>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .social-row {
+    display: flex;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .social-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: currentColor;
+  }
+  .social-pill svg { color: inherit; }
+</style>
