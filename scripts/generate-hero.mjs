@@ -9,7 +9,7 @@
 // Requires: ffmpeg in PATH, sharp installed.
 
 import { execSync } from 'node:child_process';
-import { existsSync, mkdirSync, copyFileSync } from 'node:fs';
+import { existsSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -39,8 +39,11 @@ const destMp4 = resolve(PUBLIC_HERO, 'hero.mp4');
 const destWebm = resolve(PUBLIC_HERO, 'hero.webm');
 const destPoster = resolve(PUBLIC_HERO, 'hero-poster.avif');
 
-console.log(`[1/3] Copying MP4 → ${destMp4}`);
-copyFileSync(source, destMp4);
+console.log(`[1/3] Transcoding MP4 fallback (H.264, scale to 1280) → ${destMp4}`);
+execSync(
+  `ffmpeg -y -i "${source}" -vf "scale=1280:-2" -c:v libx264 -crf 28 -preset slow -pix_fmt yuv420p -an -movflags +faststart "${destMp4}"`,
+  { stdio: 'inherit' }
+);
 
 console.log(`[2/3] Transcoding WebM (VP9) → ${destWebm}`);
 execSync(
