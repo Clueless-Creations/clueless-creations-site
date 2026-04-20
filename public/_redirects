@@ -1,5 +1,7 @@
 # Cloudflare Pages redirect rules
 # https://developers.cloudflare.com/pages/configuration/redirects/
-
-# Canonicalize www -> apex (301)
-https://www.clueless-creations.com/* https://clueless-creations.com/:splat 301!
+#
+# Note: _redirects matches path only. Host-based redirects (www -> apex) must
+# be set as a zone-level Cloudflare Redirect Rule. Currently both www and apex
+# serve identical content with <link rel="canonical"> pointing to apex, which
+# Google consolidates correctly.
