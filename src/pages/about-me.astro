@@ -15,23 +15,35 @@ import SocialRow from '../components/SocialRow.astro';
         <em class="accent-muted">on the board.</em>
       </h1>
 
-      <!-- Headshot placeholder — replace with real image at /img/eduardo.avif when supplied -->
-      <div class="ph-image" data-label="headshot" style="width: 100%; aspect-ratio: 3/4; max-width: 18rem; border-radius: var(--radius-lg); margin: 0 0 var(--space-12);"></div>
+      <picture>
+        <source srcset="/img/eduardo.avif" type="image/avif" />
+        <img
+          src="/img/eduardo.jpg"
+          alt="Eduardo Muth-Martinez"
+          width="640"
+          height="854"
+          loading="lazy"
+          decoding="async"
+          style="width: 100%; aspect-ratio: 3/4; max-width: 18rem; border-radius: var(--radius-lg); margin: 0 0 var(--space-12); object-fit: cover; display: block;"
+        />
+      </picture>
 
-      <!-- TODO(eduardo): Replace the paragraph below with a 5–10 line bio.
-           Context: This is the only page on the site written in your voice
-           rather than the company's. Readers landing here have already bought
-           into the premise — they want to know who's on the board. What
-           matters: (1) what you're optimizing for, (2) what makes this
-           portfolio different from a typical solopreneur shop, (3) how to
-           reach you. Skip the resume bullets — Substack and LinkedIn carry
-           those. ~80–150 words. -->
       <div class="bio prose" style="font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.75; color: hsl(var(--foreground) / 0.88);">
-        <p>
-          [TODO: replace with your bio. See the comment in the source for
-          guidance on tone and scope. Until this is filled in, this block
-          is visible in the live site as a deliberate placeholder so it's
-          never accidentally missed.]
+        <p style="margin: 0 0 1.25rem;">
+          I run a portfolio of businesses through an agent harness. Each one
+          is a bet that software can discover, validate, build, launch, and
+          operate products with minimal human oversight — and that the lessons
+          from running them compound into better harness, better products,
+          better distribution.
+        </p>
+        <p style="margin: 0 0 1.25rem;">
+          I write about this every week at
+          <a href="https://www.thecompoundingfounder.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: hsl(var(--muted-foreground)); text-underline-offset: 3px;">The Compounding Founder</a>:
+          <em>build once, extract forever.</em> Notes from a solo founder
+          turning work into compounding assets.
+        </p>
+        <p style="margin: 0;">
+          Best way to reach me is email. Slow on DMs, fast on substantive email.
         </p>
       </div>
 
