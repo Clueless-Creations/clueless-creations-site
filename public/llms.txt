@@ -1,0 +1,28 @@
+# Clueless Creations
+
+> A portfolio holding company running six businesses through an agent harness. Humans on the board; the harness on the floor.
+
+Clueless Creations runs businesses with agents. Four revenue streams compound: consumer products, extracted micro-SaaS, media (The Compounding Founder), and the harness itself as a product. Every failure is an opportunity to make the harness smarter — the factory gets better, not the individual business.
+
+The operating model: the board views through Notion and structured reports. It intervenes only at predefined gates — capital allocation, kill decisions, compliance-sensitive content, anything that touches legal or platform policy. Everything else runs autonomously. This is an operating model, not a product.
+
+## Pages
+
+- [Home](https://clueless-creations.com/): A business that runs other businesses — premise, model, contact.
+- [How it works](https://clueless-creations.com/about.html): The harness, skills, and the board-not-management operating model.
+- [About the founder](https://clueless-creations.com/about-me.html): Eduardo Muth-Martinez — solo founder running the portfolio.
+- [Contact](https://clueless-creations.com/contact.html): Reach the board at eduardo@clueless-creations.com.
+
+## Companion publication
+
+- [The Compounding Founder](https://www.thecompoundingfounder.com/): Weekly Substack. Build once, extract forever. Notes from a solo founder turning work into compounding assets.
+
+## Source
+
+- [GitHub organization: Clueless-Creations](https://github.com/Clueless-Creations): Open-source byproducts of the harness.
+
+## Optional
+
+- Contact email: eduardo@clueless-creations.com
+- X / Twitter: https://x.com/EduMuthMartinez
+- LinkedIn: https://www.linkedin.com/in/eduardomuthmartinez/

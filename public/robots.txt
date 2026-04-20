@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# AI assistants & training crawlers — allowed
+# Clueless Creations is pro-agent; the whole business is about agents running businesses.
+
+Sitemap: https://clueless-creations.com/sitemap-index.xml

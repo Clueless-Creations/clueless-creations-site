@@ -11,6 +11,42 @@ export interface Props {
   canonical?: string;
 }
 const { title, description, page, canonical } = Astro.props;
+// 404 is not indexable
+const robots = page === '404' ? 'noindex, follow' : undefined;
+
+const site = 'https://clueless-creations.com';
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Clueless Creations',
+  url: site,
+  logo: `${site}/icon-512.png`,
+  description: 'A portfolio holding company running businesses through an agent harness. Humans on the board; the harness on the floor.',
+  founder: {
+    '@type': 'Person',
+    name: 'Eduardo Muth-Martinez',
+    url: `${site}/about-me.html`,
+    sameAs: [
+      'https://x.com/EduMuthMartinez',
+      'https://www.linkedin.com/in/eduardomuthmartinez/',
+      'https://github.com/Clueless-Creations',
+      'https://www.thecompoundingfounder.com/',
+    ],
+  },
+  sameAs: [
+    'https://github.com/Clueless-Creations',
+    'https://x.com/EduMuthMartinez',
+    'https://www.thecompoundingfounder.com/',
+  ],
+};
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Clueless Creations',
+  url: site,
+  publisher: { '@type': 'Organization', name: 'Clueless Creations' },
+  inLanguage: 'en-US',
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -19,8 +55,13 @@ const { title, description, page, canonical } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#080808" />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/instrument-serif-400.woff2" crossorigin />
-    <SeoMeta title={title} description={description} canonical={canonical} />
+    <SeoMeta title={title} description={description} canonical={canonical} robots={robots} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(organizationJsonLd)}></script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteJsonLd)}></script>
   </head>
   <body data-page={page}>
     <a href="#main" class="skip-link">Skip to content</a>

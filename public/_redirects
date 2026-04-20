@@ -1,0 +1,5 @@
+# Cloudflare Pages redirect rules
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Canonicalize www -> apex (301)
+https://www.clueless-creations.com/* https://clueless-creations.com/:splat 301!

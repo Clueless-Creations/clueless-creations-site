@@ -1,0 +1,4 @@
+Contact: mailto:eduardo@clueless-creations.com
+Expires: 2027-04-20T00:00:00Z
+Preferred-Languages: en
+Canonical: https://clueless-creations.com/.well-known/security.txt

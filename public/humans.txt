@@ -1,0 +1,18 @@
+/* TEAM */
+Founder: Eduardo Muth-Martinez
+Contact: eduardo@clueless-creations.com
+X: @EduMuthMartinez
+LinkedIn: eduardomuthmartinez
+Location: Chicago, IL
+
+/* SITE */
+Last update: 2026-04-20
+Language: English
+Doctype: HTML5
+Standards: HTML5, CSS3
+Components: Astro, Cloudflare Pages
+Software: pnpm, ffmpeg, sharp
+
+/* ASSEMBLED BY */
+This site was assembled by the operator, not a human.
+The operator is the agent harness described at /about.
