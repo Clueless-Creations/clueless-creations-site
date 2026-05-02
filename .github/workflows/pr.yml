@@ -7,6 +7,11 @@ concurrency:
   group: pr-${{ github.head_ref }}
   cancel-in-progress: true
 
+env:
+  # Opt into Node 24 now for any JS action still declaring Node 20.
+  # See: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
