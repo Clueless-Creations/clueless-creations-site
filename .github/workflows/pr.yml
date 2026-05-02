@@ -16,10 +16,10 @@ jobs:
       BUILT_AT: ${{ github.event.pull_request.updated_at || github.event.head_commit.timestamp }}
       BUILT_BY: ${{ github.actor }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
         with: { version: 9 }
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: 'pnpm'
@@ -55,18 +55,28 @@ jobs:
       BUILT_AT: ${{ github.event.pull_request.updated_at }}
       BUILT_BY: ${{ github.actor }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
         with: { version: 9 }
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with: { node-version: 22, cache: 'pnpm' }
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - name: Deploy to Cloudflare Pages preview
-        uses: cloudflare/pages-action@v1
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: clueless-creations-site
-          directory: dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy dist --project-name=clueless-creations-site --branch=${{ github.head_ref }} --commit-dirty=true
+      - name: Comment preview URL on PR
+        if: steps.deploy.outputs.deployment-url
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+        run: |
+          gh pr comment "$PR_NUMBER" --body "🚀 Preview deployed
+          - Branch alias: ${ALIAS_URL:-n/a}
+          - This deploy: $DEPLOY_URL"
