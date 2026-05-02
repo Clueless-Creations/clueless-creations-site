@@ -1,19 +1,15 @@
 /* ============================================================
    Self-hosted fonts — see /public/fonts/
+   We use Inter as the substitute for both arcadia and arcadiaDisplay
+   (Mercury spec lists Inter / Manrope as the substitute family).
+   Weight 300 stands in for arcadiaDisplay's signature light 360.
    ============================================================ */
 @font-face {
-  font-family: 'Instrument Serif';
+  font-family: 'Inter';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   font-display: swap;
-  src: url('/fonts/instrument-serif-400.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/instrument-serif-400-italic.woff2') format('woff2');
+  src: url('/fonts/inter-300.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Inter';
@@ -29,352 +25,302 @@
   font-display: swap;
   src: url('/fonts/inter-500.woff2') format('woff2');
 }
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/jetbrains-mono-400.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/jetbrains-mono-500.woff2') format('woff2');
-}
 
 /* ============================================================
-   Clueless Creations — Design Tokens
-   Single source of truth. Import this file on every page.
+   Clueless Creations — Design Tokens (Mercury system)
+   Single source of truth. Imported via BaseLayout.
    ============================================================ */
 
 :root {
-  /* ---- Color (HSL triplets, used with hsl(var(--x))) ---- */
-  --background: 0 0% 3%;                 /* Near-black — matches video backdrop */
-  --background-elev: 0 0% 5%;            /* Elevated — slightly lifted */
-  --foreground: 0 0% 100%;               /* Pure white */
-  --muted-foreground: 240 5% 72%;        /* Muted gray for subcopy — bumped for 4.5:1 contrast on --background 0 0% 3% */
-  --primary: 0 0% 100%;
-  --primary-foreground: 0 0% 4%;
-  --secondary: 0 0% 10%;
-  --muted: 0 0% 10%;
-  --accent: 0 0% 10%;
-  --border: 0 0% 18%;
-  --input: 0 0% 18%;
+  /* ---- Mercury palette ---- */
+  --color-mercury-blue:   #5266eb;
+  --color-ghost-blue:     #cdddff;
+  --color-deep-space:     #171721;
+  --color-midnight-slate: #1e1e2a;
+  --color-graphite:       #272735;
+  --color-lead:           #70707d;
+  --color-starlight:      #ededf3;
+  --color-silver:         #c3c3cc;
+  --color-pure-white:     #ffffff;
 
-  /* ---- Per-business accents (revealed in Portfolio) ---- */
-  --accent-clothing: 14 90% 64%;         /* Clueless Clothing — warm coral */
-  --accent-batchlist: 200 80% 60%;       /* BatchList — sky */
-  --accent-tripcraft: 160 60% 55%;       /* TripCraft — teal */
-  --accent-thelm: 270 60% 68%;           /* Thelm — violet */
-  --accent-research: 42 90% 62%;         /* Research engine — amber */
-  --accent-newsletter: 340 70% 65%;      /* The Compounding Founder — rose */
+  /* ---- Semantic surface tokens (alias the palette) ---- */
+  --surface-abyss:        var(--color-deep-space);     /* Page outer */
+  --surface-base:         var(--color-midnight-slate); /* Page / section */
+  --surface-interactive:  var(--color-graphite);       /* Hover surface */
+
+  --color-fg:             var(--color-starlight);      /* Primary text */
+  --color-fg-muted:       var(--color-silver);         /* Secondary text */
+  --color-border:         var(--color-lead);           /* Borders / dividers */
+  --color-accent:         var(--color-mercury-blue);   /* Primary CTA */
+  --color-accent-fg:      var(--color-pure-white);     /* Text on CTA */
 
   /* ---- Typography ---- */
-  --font-display: "Instrument Serif", serif;
-  --font-body: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body:    'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Type scale — display (serif) */
-  --text-display-xl: clamp(3.5rem, 8vw, 8rem);     /* Hero h1 */
-  --text-display-lg: clamp(2.75rem, 5.5vw, 5rem);  /* Section headers */
-  --text-display-md: clamp(2rem, 3.5vw, 3.25rem);  /* Sub headers */
-  --text-display-sm: clamp(1.5rem, 2.4vw, 2rem);   /* Card titles */
+  /* Type scale — fluid, anchored to Mercury pixel maxes */
+  --text-display:     clamp(2.75rem, 5.5vw, 4.0625rem);  /* 65px */
+  --text-heading-lg:  clamp(2.25rem, 4.2vw, 3.0625rem);  /* 49px */
+  --text-heading:     clamp(1.625rem, 3vw, 2rem);        /* 32px */
+  --text-heading-sm:  clamp(1.125rem, 1.8vw, 1.3125rem); /* 21px */
+  --text-subheading:  1.125rem;  /* 18px */
+  --text-body:        1rem;      /* 16px */
+  --text-body-sm:     0.875rem;  /* 14px */
+  --text-caption:     0.75rem;   /* 12px */
 
-  /* Type scale — body */
-  --text-xs:  0.75rem;
-  --text-sm:  0.875rem;
-  --text-base: 1rem;
-  --text-lg:  1.125rem;
-  --text-xl:  1.25rem;
+  /* Line heights */
+  --leading-display:    1.1;
+  --leading-heading-lg: 1.15;
+  --leading-heading:    1.2;
+  --leading-heading-sm: 1.35;
+  --leading-subheading: 1.4;
+  --leading-body:       1.5;
 
-  /* ---- Spacing rhythm ---- */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
+  /* Tracking — subtle positive tracking is a Mercury signature */
+  --tracking-display:    0.01em;
+  --tracking-heading:    0.005em;
+  --tracking-body:       0.01em;
+
+  /* Weights — light 300 stands in for arcadiaDisplay 360 */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+
+  /* ---- Spacing — 4px base ---- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-14: 56px;
+  --space-18: 72px;
+  --space-20: 80px;
+  --space-28: 112px;
+  --space-32: 128px;
 
   /* ---- Radii ---- */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
+  --radius-none:  0px;
+  --radius-sm:    4px;     /* containers */
+  --radius-pill:  32px;    /* primary pill button, hero email input */
+  --radius-pill-lg: 40px;  /* header pill */
   --radius-full: 9999px;
 
   /* ---- Layout ---- */
-  --container: 80rem; /* 1280px */
+  --container: 1200px;
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; min-height: 100%; }
 
+html {
+  background: var(--surface-abyss);
+  color-scheme: dark;
+}
+
 body {
   font-family: var(--font-body);
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-body);
+  background: var(--surface-base);
+  color: var(--color-fg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
 }
+
+::selection { background: var(--color-mercury-blue); color: var(--color-pure-white); }
 
 /* ============================================================
-   Liquid glass — core surface treatment
-   Used on nav, buttons, cards, panels.
+   Typography primitives
    ============================================================ */
-.liquid-glass {
-  background: rgba(255, 255, 255, 0.06);
-  background-blend-mode: luminosity;
-  color: #fff;
-  backdrop-filter: blur(12px) saturate(1.4);
-  -webkit-backdrop-filter: blur(12px) saturate(1.4);
-  border: none;
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.2),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
-    0 8px 32px rgba(0, 0, 0, 0.3);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-.liquid-glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.4px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
-    rgba(255, 255, 255, 0.45) 100%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-a.liquid-glass, a.liquid-glass:visited, a.liquid-glass:hover { color: #fff !important; text-decoration: none; }
-.liquid-glass.interactive { cursor: pointer; }
-.liquid-glass.interactive:hover { transform: scale(1.03); background: rgba(255, 255, 255, 0.1); }
-
-/* Pill CTA \u2014 strongest glass look, for nav CTAs and inline buttons */
-.liquid-glass.rounded-full {
-  font-weight: 500;
-  letter-spacing: -0.005em;
-}
-
-/* Deeper glass for cards/panels — slightly more opaque for readability */
-.liquid-glass-deep {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-/* ============================================================
-   Portfolio card metrics bar \u2014 shown at bottom of biz-cards
-   ============================================================ */
-.card-metrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: .75rem;
-  padding: 1rem;
-  margin-top: 1rem;
-  border-radius: .75rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-}
-.card-metrics .metric-cell {
-  display: flex;
-  flex-direction: column;
-  gap: .15rem;
-}
-.card-metrics .metric-val {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  line-height: 1;
-  color: #fff;
-  display: flex;
-  align-items: baseline;
-  gap: .35rem;
-}
-.card-metrics .metric-val .trend-up {
-  font-family: var(--font-body);
-  font-size: .7rem;
-  font-weight: 500;
-  color: #9ae6b4;
-  letter-spacing: 0;
-}
-.card-metrics .metric-val .trend-down {
-  font-family: var(--font-body);
-  font-size: .7rem;
-  font-weight: 500;
-  color: #fca5a5;
-  letter-spacing: 0;
-}
-.card-metrics .metric-cap {
-  font-family: var(--font-mono);
-  font-size: .6rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: hsl(var(--muted-foreground));
-}
-.verified-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: .35rem;
-  font-family: var(--font-mono);
-  font-size: .6rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: hsl(var(--muted-foreground));
-  margin-top: .75rem;
-  padding-top: .75rem;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.verified-badge .verified-dot {
-  width: 6px; height: 6px; border-radius: 999px;
-  background: #9ae6b4;
-  box-shadow: 0 0 8px rgba(154,230,180,.6);
-}
-   Default for any "stat" / "feature" / "metric" block across the site.
-   ============================================================ */
-.stat-row {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 1rem;
-  width: 100%;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.stat-row::-webkit-scrollbar { display: none; }
-.stat-row.stat-row-wrap { flex-wrap: wrap; }
-
-.stat-card {
-  /* inherits .liquid-glass look via composition */
-  flex: 1 1 0;
-  min-width: 12rem;
-  padding: 1.5rem 1.75rem;
-  border-radius: 1rem;
-  text-align: left;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
-}
-.stat-card .stat-icon {
-  font-size: 1.75rem;
-  opacity: .85;
-  margin-bottom: 1rem;
-  line-height: 1;
-}
-.stat-card .stat-value {
-  display: flex;
-  align-items: baseline;
-  gap: .4rem;
-  font-family: var(--font-display);
-  font-size: 2.25rem;
-  line-height: 1;
-}
-.stat-card .stat-value small {
-  font-family: var(--font-body);
-  font-size: .95rem;
-  opacity: .8;
-  font-weight: 400;
-}
-.stat-card .stat-label {
-  color: hsl(var(--muted-foreground));
-  font-size: .8rem;
-  margin-top: .25rem;
-}
-.stat-card .stat-title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  line-height: 1.1;
-  margin-top: .25rem;
-}
-.stat-card .stat-desc {
-  color: hsl(var(--muted-foreground));
-  font-size: .9rem;
-  line-height: 1.6;
-  margin-top: .25rem;
-}
-
-/* ============================================================
-   Animations
-   ============================================================ */
-@keyframes fade-rise {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-rise         { animation: fade-rise 0.8s ease-out both; }
-.animate-fade-rise-delay   { animation: fade-rise 0.8s ease-out 0.2s both; }
-.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
-.animate-fade-rise-delay-3 { animation: fade-rise 0.8s ease-out 0.6s both; }
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.35; }
-}
-.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
-
-/* ============================================================
-   Typographic primitives
-   ============================================================ */
-.font-display { font-family: var(--font-display); font-weight: 400; }
+.font-display { font-family: var(--font-display); font-weight: var(--weight-light); }
 .font-body    { font-family: var(--font-body); }
-.font-mono    { font-family: var(--font-mono); }
 
-.display-xl {
+/* Headlines — light weight, restrained authority */
+.display {
   font-family: var(--font-display);
-  font-size: var(--text-display-xl);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  font-weight: 400;
+  font-weight: var(--weight-light);
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  margin: 0;
 }
-.display-lg {
+.heading-lg {
   font-family: var(--font-display);
-  font-size: var(--text-display-lg);
-  line-height: 1;
-  letter-spacing: -0.025em;
-  font-weight: 400;
+  font-weight: var(--weight-light);
+  font-size: var(--text-heading-lg);
+  line-height: var(--leading-heading-lg);
+  letter-spacing: var(--tracking-heading);
+  margin: 0;
 }
-.display-md {
+.heading {
   font-family: var(--font-display);
-  font-size: var(--text-display-md);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-weight: 400;
+  font-weight: var(--weight-light);
+  font-size: var(--text-heading);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+  margin: 0;
 }
-.display-sm {
+.heading-sm {
   font-family: var(--font-display);
-  font-size: var(--text-display-sm);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
-  font-weight: 400;
+  font-weight: var(--weight-medium);
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
+  letter-spacing: var(--tracking-heading);
+  margin: 0;
+}
+.subheading {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-subheading);
+  line-height: var(--leading-subheading);
+  margin: 0;
 }
 
+/* Eyebrow — small, tracked, tertiary */
 .eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: hsl(var(--muted-foreground));
+  color: var(--color-fg-muted);
 }
 
-.muted { color: hsl(var(--muted-foreground)); }
+.muted        { color: var(--color-fg-muted); }
+.accent-muted { color: var(--color-fg-muted); font-style: normal; }
 
-/* Accent inline — matches Velorah-style emphasis */
-.accent-muted { color: hsl(var(--muted-foreground)); font-style: normal; }
+/* ============================================================
+   Buttons — Mercury pill family
+   ============================================================ */
+/* Primary CTA — solid Mercury Blue pill (the only chromatic accent on the page) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 16px 24px;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  background: var(--color-accent);
+  color: var(--color-accent-fg);
+  border: 0;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-ghost-blue);
+  outline-offset: 3px;
+}
+
+/* Header pill — translucent Ghost Blue, for nav CTAs */
+.btn-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  background: rgba(205, 221, 255, 0.10); /* ghost-blue ~10% */
+  color: var(--color-fg);
+  border: 0;
+  border-radius: var(--radius-pill-lg);
+  text-decoration: none;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+@media (min-width: 480px) {
+  .btn-header { padding: 8px 20px; }
+}
+.btn-header:hover { background: rgba(205, 221, 255, 0.18); }
+.btn-header:focus-visible {
+  outline: 2px solid var(--color-ghost-blue);
+  outline-offset: 3px;
+}
+
+/* Ghost link — text-only nav items */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-regular);
+  color: var(--color-fg);
+  background: transparent;
+  border: 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.btn-ghost:hover { color: var(--color-fg); }
+
+/* ============================================================
+   Nav primitives
+   ============================================================ */
+.site-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+.site-nav-logo {
+  font-family: var(--font-display);
+  font-weight: var(--weight-medium);
+  font-size: 1rem; /* tighter on mobile, scales up at md */
+  letter-spacing: 0.005em;
+  color: var(--color-fg);
+  text-decoration: none;
+  white-space: nowrap;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+@media (min-width: 480px) {
+  .site-nav-logo { font-size: 1.125rem; }
+}
+@media (min-width: 768px) {
+  .site-nav-logo { font-size: var(--text-heading-sm); }
+}
+.site-nav-links {
+  display: none;
+  align-items: center;
+  gap: var(--space-8);
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.site-nav-cta { flex: 0 0 auto; }
+@media (min-width: 960px) {
+  .site-nav-links { display: flex; }
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-regular);
+  color: var(--color-fg-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.nav-link:hover, .nav-link.active { color: var(--color-fg); }
 
 /* ============================================================
    Layout helpers
@@ -387,7 +333,44 @@ a.liquid-glass, a.liquid-glass:visited, a.liquid-glass:hover { color: #fff !impo
   padding-right: var(--space-6);
 }
 
-/* Background video fills page behind content */
+/* Section spacing — Mercury wants 80–120px of vertical air */
+.section {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+}
+@media (min-width: 768px) {
+  .section { padding-top: var(--space-28); padding-bottom: var(--space-28); }
+}
+
+/* ============================================================
+   Feature list — Mercury "Interactive Feature Link" pattern
+   Each item has a 1px Lead bottom border, no radius.
+   ============================================================ */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--color-border);
+}
+.feature-list > li {
+  border-bottom: 1px solid var(--color-border);
+}
+.feature-link {
+  display: block;
+  padding: var(--space-6) 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
+  color: var(--color-fg);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.feature-link:hover { color: var(--color-mercury-blue); }
+
+/* ============================================================
+   Hero — atmospheric image / video bg
+   ============================================================ */
 .video-bg {
   position: absolute;
   inset: 0;
@@ -402,167 +385,104 @@ a.liquid-glass, a.liquid-glass:visited, a.liquid-glass:hover { color: #fff !impo
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.35) 0%,
-    rgba(0, 0, 0, 0) 28%,
-    rgba(0, 0, 0, 0) 62%,
-    rgba(0, 0, 0, 0.55) 100%
-  );
-}
-
-/* ============================================================
-   Navigation primitives
-   ============================================================ */
-/* ============================================================
-   Nav bar \u2014 responsive layout
-   ============================================================ */
-.site-nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-.site-nav-logo {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
-  text-decoration: none;
-  color: inherit;
-  white-space: nowrap;
-  flex: 0 0 auto;
-}
-.site-nav-links {
-  display: none;
-  align-items: center;
-  gap: 2rem;
-  flex: 1 1 auto;
-  justify-content: center;
-  min-width: 0;
-}
-.site-nav-cta {
-  flex: 0 0 auto;
-}
-@media (min-width: 960px) {
-  .site-nav-links { display: flex; }
-}
-@media (max-width: 959px) {
-  .site-nav { justify-content: space-between; }
-}
-
-/* Nav primitives */
-.nav-link {
-  font-size: 0.875rem;
-  color: hsl(var(--muted-foreground));
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.nav-link:hover, .nav-link.active {
-  color: hsl(var(--foreground));
-}
-
-/* ============================================================
-   Image placeholder — honest striped fill
-   ============================================================ */
-.ph-image {
-  position: relative;
-  overflow: hidden;
   background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.04) 0 12px,
-      rgba(255, 255, 255, 0.02) 12px 24px
-    ),
-    hsl(var(--background-elev));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    linear-gradient(
+      180deg,
+      rgba(23, 23, 33, 0.65) 0%,
+      rgba(23, 23, 33, 0.25) 30%,
+      rgba(23, 23, 33, 0.25) 55%,
+      rgba(23, 23, 33, 0.85) 100%
+    );
 }
-.ph-image::after {
-  content: attr(data-label);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+/* Stronger scrim on small screens — text sits over a wider band of the video */
+@media (max-width: 768px) {
+  .vignette {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(23, 23, 33, 0.85) 0%,
+        rgba(23, 23, 33, 0.55) 30%,
+        rgba(23, 23, 33, 0.55) 55%,
+        rgba(23, 23, 33, 0.95) 100%
+      );
+  }
 }
 
 /* ============================================================
-   Status dots (for portfolio / business statuses)
+   Status dots — kept as a small functional accent
    ============================================================ */
 .status-dot {
   display: inline-block;
   width: 8px;
   height: 8px;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   margin-right: 8px;
   vertical-align: middle;
+  background: var(--color-mercury-blue);
+  box-shadow: 0 0 10px rgba(82, 102, 235, 0.6);
 }
-.status-live       { background: hsl(140 70% 55%); box-shadow: 0 0 12px hsl(140 70% 55% / 0.7); }
-.status-building   { background: hsl(42 90% 62%);  box-shadow: 0 0 12px hsl(42 90% 62% / 0.6); }
-.status-validating { background: hsl(200 80% 60%); box-shadow: 0 0 12px hsl(200 80% 60% / 0.6); }
-.status-retired    { background: hsl(0 0% 40%); }
 
 /* ============================================================
-   Prose — for Journal posts
+   Animations
+   ============================================================ */
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-rise         { animation: fade-rise 0.7s ease-out both; }
+.animate-fade-rise-delay   { animation: fade-rise 0.7s ease-out 0.15s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise 0.7s ease-out 0.3s both; }
+.animate-fade-rise-delay-3 { animation: fade-rise 0.7s ease-out 0.45s both; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* ============================================================
+   Prose — for any long-form copy
    ============================================================ */
 .prose {
   font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.75;
-  color: hsl(var(--foreground) / 0.88);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-fg);
   max-width: 68ch;
 }
 .prose p { margin: 0 0 1.25em; }
 .prose h2 {
   font-family: var(--font-display);
-  font-size: 2rem;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-weight: var(--weight-light);
+  font-size: var(--text-heading);
+  line-height: var(--leading-heading);
   margin: 2em 0 0.6em;
-  font-weight: 400;
 }
 .prose h3 {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  font-weight: var(--weight-medium);
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
   margin: 1.75em 0 0.5em;
-  font-weight: 400;
 }
-.prose a { color: hsl(var(--foreground)); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,0.3); }
-.prose a:hover { text-decoration-color: rgba(255,255,255,1); }
-.prose blockquote {
-  border-left: 2px solid rgba(255,255,255,0.3);
-  padding-left: 1.25em;
-  margin: 1.5em 0;
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  line-height: 1.4;
-  color: hsl(var(--foreground));
+.prose a {
+  color: var(--color-fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-border);
 }
-.prose code {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  background: rgba(255,255,255,0.06);
-  padding: 0.15em 0.4em;
-  border-radius: 4px;
-}
-.prose ul, .prose ol { padding-left: 1.25em; margin: 0 0 1.25em; }
-.prose li { margin: 0.35em 0; }
+.prose a:hover { text-decoration-color: var(--color-mercury-blue); color: var(--color-mercury-blue); }
 
 /* ============================================================
-   Footer operator stamp (self-aware detail)
+   Footer operator stamp
    ============================================================ */
 .operator-stamp {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
   letter-spacing: 0.12em;
-  /* WCAG AA: small-text contrast 4.5:1. rgba(255,255,255,0.6) on #080808 ≈ 5.8:1 */
-  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
 }
 
 /* ============================================================
@@ -570,11 +490,23 @@ a.liquid-glass, a.liquid-glass:visited, a.liquid-glass:hover { color: #fff !impo
    ============================================================ */
 .divider-hairline {
   border: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--color-border);
 }
 
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  padding: 0.75rem 1rem;
+  background: var(--surface-interactive);
+  color: var(--color-fg);
+  text-decoration: none;
+  z-index: 100;
+}
+.skip-link:focus-visible { top: 0; }
+
 /* ============================================================
-   Master reduced-motion kill-switch
+   Reduced-motion kill-switch
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

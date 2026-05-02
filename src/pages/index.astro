@@ -6,8 +6,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Clueless Creations® — A business that runs businesses."
   description="A portfolio holding company running six businesses through an agent harness. Humans on the board; the harness on the floor."
 >
-  <!-- HERO -->
-  <section class="hero" style="position: relative; overflow: hidden; height: 100vh; min-height: 720px;">
+  <!-- HERO — atmospheric image / video, single Primary CTA -->
+  <section class="hero">
     <picture>
       <img
         src="/hero/hero-poster.avif"
@@ -34,40 +34,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </video>
     <div class="vignette" aria-hidden="true"></div>
 
-    <div class="hero-content">
+    <div class="hero-content container-wide">
       <div class="hero-top">
         <div class="animate-fade-rise eyebrow hero-eyebrow">
-          <span class="status-dot status-live pulse-dot"></span>
+          <span class="status-dot pulse-dot"></span>
           A portfolio of agent-run businesses
         </div>
-        <h1 class="hero-h1 animate-fade-rise font-display">
-          A business that
-          <em class="accent-muted">runs</em>
-          other
-          <em class="accent-muted">businesses.</em>
+        <h1 class="display animate-fade-rise hero-h1">
+          A business that <span class="muted">runs</span> other <span class="muted">businesses.</span>
         </h1>
       </div>
       <div class="hero-bottom">
-        <p class="animate-fade-rise-delay muted hero-lede">
+        <p class="animate-fade-rise-delay subheading muted hero-lede">
           Agents discover, validate, build, launch, and operate a portfolio of products.
           Humans sit above as a board of directors — intervening only when judgment is required.
         </p>
         <div class="animate-fade-rise-delay-2 hero-ctas">
-          <a href="/about" class="liquid-glass interactive rounded-full hero-cta hero-cta-primary">
-            How the harness works →
-          </a>
+          <a href="/about" class="btn-primary">How the harness works →</a>
         </div>
       </div>
     </div>
 
     <style>
+      .hero {
+        position: relative;
+        overflow: hidden;
+        height: 100vh;
+        min-height: 720px;
+      }
       .hero-content {
         position: absolute;
         inset: 0;
         z-index: 10;
         display: flex;
         flex-direction: column;
-        padding: 6rem clamp(1.5rem, 5vw, 5rem) 4rem;
+        padding-top: 6rem;
+        padding-bottom: 4rem;
       }
       .hero-top {
         text-align: left;
@@ -78,35 +80,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         text-align: left;
         max-width: 42rem;
       }
-      .hero-eyebrow {
-        margin-bottom: var(--space-4);
-      }
+      .hero-eyebrow { margin-bottom: var(--space-4); }
       .hero-h1 {
-        font-size: clamp(2.25rem, 5.5vw, 5.5rem);
-        margin: 0;
-        letter-spacing: -0.03em;
-        line-height: 0.95;
-        text-shadow: 0 2px 40px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
+        font-size: clamp(2.5rem, 6vw, 4.0625rem);
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.85),
+          0 4px 24px rgba(0,0,0,0.65);
+      }
+      .hero-eyebrow {
+        text-shadow: 0 1px 2px rgba(0,0,0,0.85);
       }
       .hero-lede {
-        font-size: 1.0625rem;
-        line-height: 1.65;
+        max-width: 36rem;
         margin: 0 0 var(--space-8);
-        max-width: 32rem;
-        text-shadow: 0 1px 20px rgba(0,0,0,0.6);
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.85),
+          0 2px 16px rgba(0,0,0,0.6);
       }
       .hero-ctas {
         display: flex;
         gap: var(--space-3);
         flex-wrap: wrap;
       }
-      .hero-cta {
-        padding: 1.05rem 2.5rem;
-        font-size: .95rem;
-        text-decoration: none;
-      }
 
-      /* Desktop: centered eyebrow + H1 at top, bubble fills middle, CTAs bottom-left */
+      /* Desktop: centered eyebrow + H1 at top, CTA bottom-left */
       @media (min-width: 960px) {
         .hero-top {
           text-align: center;
@@ -124,17 +121,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- THE PREMISE -->
-  <section class="section-well" style="padding: 8rem 1.5rem; background: hsl(var(--background));">
-    <div class="container-wide grid md:grid-cols-12" style="gap: var(--space-12);">
-      <div class="md:col-span-4">
+  <section class="section">
+    <div class="container-wide premise-grid">
+      <div>
         <div class="eyebrow">01 — The premise</div>
       </div>
-      <div class="md:col-span-8">
-        <h2 class="display-lg" style="margin:0 0 var(--space-8);">
-          We run businesses with agents,
-          <em class="accent-muted">and we sell the tools and lessons that come from doing it.</em>
+      <div>
+        <h2 class="heading-lg" style="margin-bottom: var(--space-8);">
+          We run businesses with agents, <span class="muted">and we sell the tools and lessons that come from doing it.</span>
         </h2>
-        <p style="font-size:1.125rem; line-height:1.7; max-width: 48rem;" class="muted">
+        <p class="subheading muted" style="max-width: 48rem;">
           Four streams feed each other. Running businesses generates lessons that become content.
           Building skills generates tools that become products. Products generate usage that
           sharpens skills. Every motion is leveraged.
@@ -144,35 +140,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="section-well" style="padding: 8rem 1.5rem; background: hsl(var(--background));">
-    <div class="container-wide grid md:grid-cols-12" style="gap: var(--space-12);">
-      <div class="md:col-span-4">
+  <section class="section">
+    <div class="container-wide premise-grid">
+      <div>
         <div class="eyebrow">02 — The model</div>
-        <h2 class="display-md" style="margin: var(--space-4) 0 0;">
-          Board, not management.
-        </h2>
+        <h2 class="heading" style="margin-top: var(--space-4);">Board, not management.</h2>
       </div>
-      <div class="md:col-span-8">
-        <p class="muted" style="font-size:1.0625rem; line-height:1.7; max-width: 48rem;">
+      <div>
+        <p class="subheading muted" style="max-width: 48rem; margin: 0 0 var(--space-8);">
           The harness runs the businesses. The board views through Notion and reports, intervening only at human gates or when the system itself needs improving. When things fail, we fix the harness — not the business. Every failure makes the factory smarter.
         </p>
-        <a href="/about" class="liquid-glass interactive rounded-full" style="display:inline-block; margin-top: var(--space-8); padding:.7rem 1.5rem; font-size:.9rem; text-decoration:none;">
-          Read the full operating model →
-        </a>
+        <a href="/about" class="btn-primary">Read the full operating model →</a>
       </div>
     </div>
   </section>
 
   <!-- CONTACT CTA -->
-  <section class="section-well" style="padding: 10rem 1.5rem; background: hsl(var(--background));">
-    <div class="container-wide" style="text-align: center;">
+  <section class="section" style="text-align: center;">
+    <div class="container-wide" style="max-width: 48rem; margin: 0 auto;">
       <div class="eyebrow" style="margin-bottom: var(--space-6);">03 — Reach the board</div>
-      <h2 class="display-xl font-display" style="margin: 0 auto var(--space-8); max-width: 18ch;">
-        <em class="accent-muted">Operators,</em> investors, <em class="accent-muted">fellow travelers.</em>
+      <h2 class="display" style="margin: 0 auto var(--space-10); max-width: 18ch;">
+        <span class="muted">Operators,</span> investors, <span class="muted">fellow travelers.</span>
       </h2>
-      <a href="/contact" class="liquid-glass interactive rounded-full" style="display:inline-block; padding: 1.15rem 3rem; font-size: 1rem; text-decoration:none;">
-        Get in touch
-      </a>
+      <a href="/contact" class="btn-primary">Get in touch</a>
     </div>
   </section>
+
+  <style>
+    .premise-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+    @media (min-width: 768px) {
+      .premise-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+        gap: var(--space-14);
+      }
+    }
+  </style>
 </BaseLayout>

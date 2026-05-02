@@ -7,12 +7,11 @@ import SocialRow from '../components/SocialRow.astro';
   title="About me — Eduardo Muth-Martinez"
   description="Founder note from the human on the board of Clueless Creations."
 >
-  <section style="padding: 8rem 1.5rem 4rem; background: hsl(var(--background));">
+  <section class="section" style="padding-top: 6rem;">
     <div class="container-wide" style="max-width: 42rem;">
       <div class="eyebrow" style="margin-bottom: var(--space-4);">Founder note</div>
-      <h1 class="display-xl font-display" style="margin: 0 0 var(--space-12); line-height: 0.95;">
-        The human
-        <em class="accent-muted">on the board.</em>
+      <h1 class="display" style="margin-bottom: var(--space-14);">
+        The human <span class="muted">on the board.</span>
       </h1>
 
       <picture>
@@ -24,30 +23,30 @@ import SocialRow from '../components/SocialRow.astro';
           height="640"
           loading="lazy"
           decoding="async"
-          style="width: 100%; height: auto; aspect-ratio: 1/1; max-width: 18rem; border-radius: var(--radius-lg); margin: 0 0 var(--space-12); object-fit: cover; display: block;"
+          style="width: 100%; height: auto; aspect-ratio: 1/1; max-width: 18rem; border-radius: var(--radius-sm); margin: 0 0 var(--space-14); object-fit: cover; display: block;"
         />
       </picture>
 
-      <div class="bio prose" style="font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.75; color: hsl(var(--foreground) / 0.88);">
-        <p style="margin: 0 0 1.25rem;">
+      <div class="prose">
+        <p>
           I run a portfolio of businesses through an agent harness. Each one
           is a bet that software can discover, validate, build, launch, and
           operate products with minimal human oversight — and that the lessons
           from running them compound into better harness, better products,
           better distribution.
         </p>
-        <p style="margin: 0 0 1.25rem;">
+        <p>
           I write about this every week at
-          <a href="https://www.thecompoundingfounder.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: hsl(var(--muted-foreground)); text-underline-offset: 3px;">The Compounding Founder</a>:
-          <em>build once, extract forever.</em> Notes from a solo founder
+          <a href="https://www.thecompoundingfounder.com/" target="_blank" rel="noopener">The Compounding Founder</a>:
+          build once, extract forever. Notes from a solo founder
           turning work into compounding assets.
         </p>
-        <p style="margin: 0;">
+        <p>
           Best way to reach me is email. Slow on DMs, fast on substantive email.
         </p>
       </div>
 
-      <div style="margin-top: var(--space-12); padding-top: var(--space-8); border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="margin-top: var(--space-14); padding-top: var(--space-8); border-top: 1px solid var(--color-border);">
         <div class="eyebrow" style="margin-bottom: var(--space-4);">Reach me</div>
         <SocialRow />
       </div>

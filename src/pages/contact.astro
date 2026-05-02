@@ -7,21 +7,19 @@ import SocialRow from '../components/SocialRow.astro';
   title="Reach us — Clueless Creations"
   description="Contact the board at Clueless Creations. Operators, investors, fellow travelers."
 >
-  <section style="padding: 10rem 1.5rem; background: hsl(var(--background)); min-height: calc(100vh - 200px); display: flex; align-items: center;">
+  <section class="section" style="min-height: calc(100vh - 200px); display: flex; align-items: center;">
     <div class="container-wide" style="max-width: 42rem; margin: 0 auto; text-align: center;">
       <div class="eyebrow" style="margin-bottom: var(--space-6);">Reach the board</div>
-      <h1 class="display-lg font-display" style="margin: 0 0 var(--space-12); line-height: 0.95;">
-        <em class="accent-muted">Operators,</em> investors, <em class="accent-muted">fellow travelers.</em>
+      <h1 class="heading-lg" style="margin: 0 0 var(--space-14);">
+        <span class="muted">Operators,</span> investors, <span class="muted">fellow travelers.</span>
       </h1>
-      <p class="muted" style="font-size: 1.125rem; line-height: 1.7; margin: 0 0 var(--space-12); max-width: 36rem; margin-inline: auto;">
+      <p class="subheading muted" style="margin: 0 0 var(--space-14); max-width: 36rem; margin-inline: auto;">
         The fastest way to reach the board is email. For everything else, the social links below.
       </p>
-      <a href="mailto:eduardo@clueless-creations.com"
-         class="liquid-glass interactive rounded-full"
-         style="display:inline-block; padding: 1.15rem 3rem; font-size: 1rem; text-decoration:none; margin-bottom: var(--space-12);">
+      <a href="mailto:eduardo@clueless-creations.com" class="btn-primary" style="margin-bottom: var(--space-14);">
         eduardo@clueless-creations.com
       </a>
-      <div style="display: flex; justify-content: center;">
+      <div style="display: flex; justify-content: center; margin-top: var(--space-10);">
         <SocialRow />
       </div>
     </div>

@@ -53,8 +53,9 @@ const websiteJsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080808" />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/instrument-serif-400.woff2" crossorigin />
+    <meta name="theme-color" content="#1e1e2a" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-300.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-400.woff2" crossorigin />
     <SeoMeta title={title} description={description} canonical={canonical} robots={robots} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -73,18 +74,3 @@ const websiteJsonLd = {
   </body>
 </html>
 
-<style>
-  .skip-link {
-    position: absolute;
-    top: -100px;
-    left: 0;
-    padding: 0.75rem 1rem;
-    background: hsl(var(--background-elev));
-    color: hsl(var(--foreground));
-    text-decoration: none;
-    z-index: 100;
-  }
-  .skip-link:focus-visible {
-    top: 0;
-  }
-</style>
